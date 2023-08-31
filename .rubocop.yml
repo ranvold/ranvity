@@ -10,3 +10,7 @@ AllCops:
 
 Metrics/MethodLength:
   Max: 24
+
+RSpec/ExampleLength:
+ Max: 24
+ 
