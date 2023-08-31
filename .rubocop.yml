@@ -1,0 +1,11 @@
+require:
+  - rubocop-rspec
+
+Documentation:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - 'bin/*'
+
+

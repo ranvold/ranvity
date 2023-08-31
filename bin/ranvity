@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+
+options = {}
+
+parser = OptionParser.new do |parser|
+  parser.on("-h", "--help", "Prints this help") do
+    puts parser
+    exit
+  end
+end
+
+parser.parse!(into: options)
+
+puts options.inspect
