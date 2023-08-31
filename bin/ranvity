@@ -1,16 +1,61 @@
 #!/usr/bin/env ruby
 
+$LOAD_PATH << 'lib'
+require 'boredapi/actions/activity'
+require 'boredapi/models/activity'
+
 require 'optparse'
 
-options = {}
+BASE_URL = 'https://www.boredapi.com/api/activity'
 
-parser = OptionParser.new do |parser|
-  parser.on("-h", "--help", "Prints this help") do
-    puts parser
-    exit
+if ARGV.first == 'new'
+  options = {}
+  parser = OptionParser.new do |parser|
+    parser.on("", "new", "")
+
+    parser.on("-t", "--type TYPE", "Activity by type")
+
+    parser.on("-p", "--participants PARTICIPANTS", "Activity by number of participants")
+
+    parser.on("", "--price_min PRICE_MIN", "Activity by min price")
+
+    parser.on("", "--price_max PRICE_MAX", "Activity by max price")
+    
+    parser.on("", "--accessibility_min ACCESSIBILITY_MIN", "Activity by min accessibility")
+
+    parser.on("", "--accessibility_max ACCESSIBILITY_MAX", "Activity by max accessibility")
+
+    parser.on("-h", "--help", "Prints this help") do
+      puts parser
+      exit
+    end
+
+    parser.on("", "list", "")
   end
+
+  parser.parse!(into: options)
+
+  found_activity = Boredapi::Actions::Activity.new(BASE_URL, options).call
+
+  if found_activity['error']
+    puts found_activity['error']
+  else
+    Boredapi::Models::Activity.save(found_activity)
+  end
+elsif ARGV.first == 'list'
+  objs = Boredapi::Models::Activity.last5
+
+  objs.each do |obj|
+    puts "====== #{obj['created_at']} ======\n" +
+         "Activity: #{obj['activity']}\n" +
+         "Type: #{obj['type']}\n" +
+         "Participants: #{obj['participants']}\n" +
+         "Price: #{obj['price']}\n" +
+         "Link: #{obj['link']}\n" +
+         "Key: #{obj['key']}\n" +
+         "Accessibility: #{obj['accessibility']}\n" +
+         "=================================\n\n"
+  end
+else
+  puts 'Wrong command!'
 end
-
-parser.parse!(into: options)
-
-puts options.inspect
