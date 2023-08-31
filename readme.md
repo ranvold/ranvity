@@ -1,3 +1,17 @@
+# How to use it
+
+- Make sure that you have ruby and sqlite3.
+
+To install:
+1. git clone git@github.com:ranvold/ranvity.git
+2. Move to the directory project
+3. bundle install
+
+Then you can use such commands:
+1. bin/ranvity new
+2. bin/ranvity new --type education --participants 1 --price_min 0.1 --price_max 30 --accessibility_min 0.1 --accessibility_max 0.5
+3. bin/ranvity list
+
 # Technical Challenge for Juniors
 
 For this challenge, you are going to use the API of [bored API](https://www.boredapi.com/). This API gives us a random activity to do every time you call it, for example, if you make the following call:
