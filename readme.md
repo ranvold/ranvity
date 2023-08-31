@@ -9,13 +9,13 @@ To install:
 
 Then you can use such commands:
 ```
-1. bin/ranvity new
+bin/ranvity new
 ```
 ```
-2. bin/ranvity new --type education --participants 1 --price_min 0.1 --price_max 30 --accessibility_min 0.1 --accessibility_max 0.5
+bin/ranvity new --type education --participants 1 --price_min 0.1 --price_max 30 --accessibility_min 0.1 --accessibility_max 0.5
 ```
 ```
-3. bin/ranvity list
+bin/ranvity list
 ```
 
 # Technical Challenge for Juniors
